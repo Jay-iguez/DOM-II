@@ -12,7 +12,6 @@ const mainHeading = document.querySelector(".main-navigation h1")
 
 mainHeading.addEventListener("click", event => {
     mainHeading.style.color = randomColorGen(255)
-    console.log(mainHeading)
 })
 
 const copyThanks = document.createElement("p")
@@ -21,7 +20,7 @@ mainHeading.appendChild(copyThanks)
 const allElements = document.querySelector("*")
 
 allElements.addEventListener("copy", event => {
-copyThanks.textContent = `Thanks for copying a ${event.type.target}`
+copyThanks.textContent = `Thanks for copying a ${event.target.tagName} element.`
 console.log('blue cheese')
 })
 
