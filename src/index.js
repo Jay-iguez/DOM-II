@@ -24,5 +24,17 @@ copyThanks.textContent = `Thanks for copying a ${event.target.tagName} element.`
 console.log('blue cheese')
 })
 
+allElements.addEventListener("dragstart", event => {
+    document.body.style.backgroundColor = randomColorGen(255)
+})
 
+allElements.addEventListener("dragend", event => {
+    document.body.style.backgroundColor = "#FFFFFF"
+})
+
+const toyBus = document.querySelector(".intro img")
+
+toyBus.addEventListener("contextmenu", event => {
+    alert("Hey, you can context menu anything other than my bus!")
+})
 
