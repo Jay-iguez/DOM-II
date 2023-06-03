@@ -14,6 +14,7 @@ function randomMessage() {
     return specialMessage[randomNumber]
 }
 
+let amountBold = 0
 
 const mainHeading = document.querySelector(".main-navigation h1")
 mainHeading.style.userSelect = "none"
@@ -60,4 +61,23 @@ mainHeading.appendChild(scrollMessage)
 scrollMessage.addEventListener("wheel", event => {
 event.preventDefault()
 scrollMessage.textContent = randomMessage()
+})
+
+const firstBusMessage = document.querySelector(".intro p")
+
+const boldedMessage = document.createElement("b")
+boldedMessage.textContent = " There are many features to explore on the webpage, please look around and find them all!"
+boldedMessage.style.fontWeight = "bold"
+firstBusMessage.appendChild(boldedMessage)
+
+document.addEventListener("keydown", event => {
+    if (event.key === "b") {
+        boldedMessage.style.fontWeight = "normal"
+    } else if (boldedMessage.style.fontWeight === "normal" && event.key === "B" && amountBold === 0) {
+        boldedMessage.style.fontWeight = "bold"
+        boldedMessage.textContent += " Hey you figured out how to bold it again, nice!"
+        amountBold += 1
+    } else if (boldedMessage.style.fontWeight === "normal" && event.key === "B" && amountBold === 1) {
+        boldedMessage.style.fontWeight = "bold"
+    }
 })
