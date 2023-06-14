@@ -2,21 +2,24 @@ import './less/index.less'
 
 // Your code goes here!
 
-const specialMessage = ["Our bus is large enough to seat 8.", "You can cancel anytime without additional costs.", "Our bus drivers are specially trained.", "Customer service is our number 1 priority.", "You decide where you'd like to go!", "Safety is utmost important.", "Children and the elderly are discounted!"]
+const specialBusMessage = ["Our bus is large enough to seat 8.", "You can cancel anytime without additional costs.", "Our bus drivers are specially trained.", "Customer service is our number 1 priority.", "You decide where you'd like to go!", "Safety is utmost important.", "Children and the elderly are discounted!"]
+
+const specialWindowMessage = ["Woohoo, here we go scrolling again!", "Time to change size once more", "Multitasking is always good", "Great way to make room."]
 
 function randomColorGen (num) {
 return `rgb(${Math.floor(num * Math.random())}, ${Math.floor(num * Math.random())}, ${Math.floor(num * Math.random())})`
 }
 
-function randomMessage() {
-    const randomNumber = Math.floor(7 * Math.random())
-    console.log(randomNumber)
-    return specialMessage[randomNumber]
+function randomMessage(type) {
+    const amountElements = type.length - 1
+    const randomNumber = Math.floor(amountElements * Math.random())
+    return type[randomNumber]
 }
 
 let amountBold = 0
+let clickCounter = 0
 
-let clickcounter = 0
+const headerMain = document.querySelector(".main-navigation")
 
 const mainHeading = document.querySelector(".main-navigation h1")
 mainHeading.style.userSelect = "none"
@@ -24,6 +27,13 @@ mainHeading.style.userSelect = "none"
 mainHeading.addEventListener("click", event => {
     mainHeading.style.color = randomColorGen(255)
 })
+
+const windowMessage = document.createElement("p")
+windowMessage.className = "flavour"
+windowMessage.style.backgroundColor = "white"
+windowMessage.style.display = "flex"
+windowMessage.style.justifyContent = "center"
+headerMain.appendChild(windowMessage)
 
 const copyThanks = document.createElement("p")
 mainHeading.appendChild(copyThanks)
@@ -47,15 +57,20 @@ allElements.addEventListener("dragend", event => {
 })
 
 allElements.addEventListener("dblclick", event => {
-    clickcounter += 1
-if (clickcounter === 5) {
+    clickCounter += 1
+if (clickCounter === 5) {
     alert("You can stop double clicking on everything, thanks.")
-    clickcounter = 0
+    clickCounter = 0
 }
 })
 
 document.addEventListener("visibilitychange", event => {
     alert("Thanks for coming back, thought you never would.")
+})
+
+window.addEventListener("scroll", event => {
+windowMessage.textContent = randomMessage(specialWindowMessage)
+console.log(windowMessage)
 })
 
 const toyBus = document.querySelector(".intro img")
@@ -77,7 +92,7 @@ mainHeading.appendChild(scrollMessage)
 
 scrollMessage.addEventListener("wheel", event => {
 event.preventDefault()
-scrollMessage.textContent = randomMessage()
+scrollMessage.textContent = randomMessage(specialBusMessage)
 })
 
 const firstBusMessage = document.querySelector(".intro p")
@@ -98,3 +113,5 @@ document.addEventListener("keydown", event => {
         boldedMessage.style.fontWeight = "bold"
     }
 })
+
+console.log(document)
