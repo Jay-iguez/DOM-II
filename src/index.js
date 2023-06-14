@@ -16,6 +16,8 @@ function randomMessage() {
 
 let amountBold = 0
 
+let clickcounter = 0
+
 const mainHeading = document.querySelector(".main-navigation h1")
 mainHeading.style.userSelect = "none"
 
@@ -25,6 +27,9 @@ mainHeading.addEventListener("click", event => {
 
 const copyThanks = document.createElement("p")
 mainHeading.appendChild(copyThanks)
+
+
+
 
 const allElements = document.querySelector("*")
 
@@ -40,6 +45,16 @@ allElements.addEventListener("dragstart", event => {
 allElements.addEventListener("dragend", event => {
     document.body.style.backgroundColor = "#FFFFFF"
 })
+
+allElements.addEventListener("dblclick", event => {
+    clickcounter += 1
+if (clickcounter === 5) {
+    alert("You can stop double clicking on everything, thanks.")
+    clickcounter = 0
+}
+})
+
+
 
 const toyBus = document.querySelector(".intro img")
 
