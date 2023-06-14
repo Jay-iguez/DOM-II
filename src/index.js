@@ -54,7 +54,9 @@ if (clickcounter === 5) {
 }
 })
 
-
+document.addEventListener("visibilitychange", event => {
+    alert("Thanks for coming back, thought you never would.")
+})
 
 const toyBus = document.querySelector(".intro img")
 
